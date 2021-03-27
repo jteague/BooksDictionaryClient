@@ -1,0 +1,20 @@
+div.book {
+    background-color: rgb(170, 214, 164);
+    width: 300px;
+    border: 2px solid black;
+    margin: 5px;
+    float: left;
+}
+
+.book-image {
+    width: 270px;
+    /* height: 300px; */
+    margin-top: 10px;
+    border: 2px solid black;
+}
+
+ul.book-list {
+    list-style-type: none;
+    margin: 0; /* To remove default bottom margin */ 
+    padding: 0; /* To remove default left padding */
+}
