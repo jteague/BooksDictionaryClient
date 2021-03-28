@@ -40,8 +40,3 @@
 .books-container {
   overflow: hidden;
 }
-
-.books-inner {
-  overflow: hidden;
-  width: 2000px;
-}

@@ -12,11 +12,13 @@ class Book extends React.Component {
         return (
             <div className="book">
                 <img src={imageUrl} className="book-image" alt={titleImageAlt} />
-                <ul className="book-list">
-                    <li className="book-list-item"><b>"{title}"</b></li>
-                    <li className="book-list-item"><i>by</i> {author}</li>
-                    <li className="book-list-item"><i>released</i> {released}</li>
-                </ul>
+                <div className="book-list-info">
+                    <ul className="book-list">
+                        <li className="book-list-item"><b>"{title}"</b></li>
+                        <li className="book-list-item"><i>by</i> {author}</li>
+                        <li className="book-list-item"><i>released</i> {released}</li>
+                    </ul>
+                </div>
             </div>
         );
     }

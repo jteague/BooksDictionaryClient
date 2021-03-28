@@ -1,0 +1,4 @@
+div.books-collection {
+    overflow: auto;
+    width: 2000px;
+}
