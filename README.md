@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Books Dictionary Client
+
+This project is the client for the [Books Dictionary Server](https://github.com/jteague/BooksDictionaryServer). This is my first real project to get my hands into React.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
