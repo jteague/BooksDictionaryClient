@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllBooks } from '../../services/fetchBooks.js';
+import { getAllBooks } from '../../services/bookService.js';
 import Book from '../book/book.js';
 import './bookcollection.css';
 

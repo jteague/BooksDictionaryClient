@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { addBook } from '../../services/addBook';
+import { addBook } from '../../services/bookService';
 
 class AddBookDialog extends React.Component {
   constructor(props) {
@@ -34,8 +34,14 @@ class AddBookDialog extends React.Component {
   }
 
   _handleAdd() {
-    addBook(this.state.bookValues);
-    // todo: refresh the main page to include the new book
+    const response = addBook(this.state.bookValues);
+    if (response) {
+      this.setState({open: false});
+      // todo: reload the page
+    }
+    else {
+      alert('Failed to add the book');
+    }
   }
 
   _handleInputChange(event) {

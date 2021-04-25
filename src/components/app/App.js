@@ -4,8 +4,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 //import { ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import AddBookDialog from '../dialogs/addBookDialog.js';
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {fas} from "@fortawesome/free-solid-svg-icons";
 
 //const theme = {};
+
+library.add(fas);
 
 function App() {
   return (
