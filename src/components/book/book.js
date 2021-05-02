@@ -1,7 +1,6 @@
 import React from 'react';
 import './book.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { deleteBook } from '../../services/bookService';
 
 class Book extends React.Component {
     constructor(props) {
@@ -14,26 +13,6 @@ class Book extends React.Component {
                 image: this.props.image
             }
         };
-        this.handleEdit = this._handleEdit.bind(this);
-        this.handleDelete = this._handleDelete.bind(this);
-    }
-
-    _handleEdit() {
-        alert('you are editing a book:' + this.state.book);
-    }
-
-    async _handleDelete() {
-        deleteBook(this.state.book).then(res => {
-            if (res.data.success === true) {
-                // todo: reload the page
-                alert('Deleted!');
-            } else {
-                alert('Failed to delete the book');
-            }
-        }).catch(err => {
-            console.error(err);
-            alert('Failed to delete the book: ' + err);
-        });
     }
 
     render() {
@@ -54,10 +33,10 @@ class Book extends React.Component {
                     </ul>
                 </div>
                 <div className="control-buttons-div">
-                    <button className="edit-button" onClick={this.handleEdit}>
+                    <button className="edit-button" onClick={() => this.props.handleEditClick(this.state.book)}>
                         <FontAwesomeIcon icon={["fas", "edit"]} size="2x"/>
                     </button>
-                    <button className="delete-button" onClick={this.handleDelete}>
+                    <button className="delete-button" onClick={() => this.props.handleDeleteClick(this.state.book)}>
                         <FontAwesomeIcon icon={["fas", "trash-alt"]} size="2x"/>
                     </button>
                 </div>

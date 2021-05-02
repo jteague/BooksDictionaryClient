@@ -4,18 +4,12 @@ export async function getAllBooks() {
     const url = '/api/getAllBooks';
     const res = await axios.get(url);
     return res.data;
-
-    //const response = await fetch(url);
-    //return await response.json();
 }
 
 export async function getBook(bookName) {
     const url = '/api/getBook';
     const res = await axios.get(url, { params: { title: bookName } });
     return res.data;
-
-    //const response = await fetch('/api/getBook?bookName=' + bookName);
-    //return await response.json();
 }
 
 export const addBook = async book => {
