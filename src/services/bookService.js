@@ -42,9 +42,11 @@ export const deleteBook = async book => {
         const url = '/api/deleteBook';
         const json = JSON.stringify(book);
 
-        const response = await axios.delete(url, json, { headers: {'Content-Type': 'application/json'} })
-        if (response.status !== 200) return { success: false};
-        return { success: true};
+        const response = await axios.delete(url, { 
+            headers: {'Content-Type': 'application/json'}, 
+            data: json
+        });
+        return response;
     } 
     catch (errors) {
         console.error(errors);

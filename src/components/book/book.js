@@ -1,7 +1,7 @@
 import React from 'react';
 import './book.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { deleteBook, addBook } from '../../services/bookService';
+import { deleteBook } from '../../services/bookService';
 
 class Book extends React.Component {
     constructor(props) {
@@ -23,14 +23,17 @@ class Book extends React.Component {
     }
 
     async _handleDelete() {
-        const response = await deleteBook(this.state.book);
-        if (response.success === true) {
-            // todo: reload the page
-            alert('Deleted!');
-        }
-        else {
-            alert('Failed to delete the book');
-        }
+        deleteBook(this.state.book).then(res => {
+            if (res.data.success === true) {
+                // todo: reload the page
+                alert('Deleted!');
+            } else {
+                alert('Failed to delete the book');
+            }
+        }).catch(err => {
+            console.error(err);
+            alert('Failed to delete the book: ' + err);
+        });
     }
 
     render() {

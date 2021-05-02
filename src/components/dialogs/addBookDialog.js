@@ -34,14 +34,12 @@ class AddBookDialog extends React.Component {
   }
 
   _handleAdd() {
-    const response = addBook(this.state.bookValues);
-    if (response) {
+    addBook(this.state.bookValues).then(res => {
       this.setState({open: false});
-      // todo: reload the page
-    }
-    else {
-      alert('Failed to add the book');
-    }
+    }).catch(err => {
+      console.error(err);
+      alert('Failed to add the book: ' + err);
+    });
   }
 
   _handleInputChange(event) {
