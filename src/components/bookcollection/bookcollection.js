@@ -1,16 +1,32 @@
 import React from 'react';
-import { getAllBooks, deleteBook } from '../../services/bookService.js';
+import { fetchAllBooks, deleteBook } from '../../services/bookService.js';
 import Book from '../book/book.js';
+import AddBookDialog from '../dialogs/addBookDialog.js';
 import './bookcollection.css';
 
 class BookCollection extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { books: [] };
+        this.state = { 
+            books: [],
+            bookToEdit: {
+                title: "",
+                author: "",
+                released: 2020,
+                image: "http://",
+              },
+            dialogOpen: false
+        };
+
+        this.getAllBooks = this.getAllBooks.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
-    handleEdit(book) {
-        alert('you are editing a book:' + book);
+    handleEdit(bookToEdit) {
+        //alert('you are editing a book:' + book.title);
+        this.child.setState({book: bookToEdit});
+        this.child.setState({open: true});
+        this.child.setState({editMode: true});
     }
 
     handleDelete(book) {
@@ -27,7 +43,7 @@ class BookCollection extends React.Component {
     }
 
     getAllBooks() {
-        getAllBooks().then(allBooks => {
+        fetchAllBooks().then(allBooks => {
             console.log(allBooks);
             this.setState({books: allBooks});
         });
@@ -51,8 +67,18 @@ class BookCollection extends React.Component {
         });
 
         return (
-            <div className="book-collection">
-                {bookComps}
+            <div>
+                <div className="book-collection">
+                    <div className='books-container'>
+                        {bookComps}
+                    </div>
+                </div>
+                <div className="actions-container">
+                    <AddBookDialog refreshBookCollection={this.getAllBooks} 
+                        ref={ref => {this.child = ref}}
+                        book={this.state.bookToEdit} 
+                        open={this.state.dialogOpen}/>
+                </div>
             </div>
         );
     }
