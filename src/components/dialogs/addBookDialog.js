@@ -14,6 +14,7 @@ class AddBookDialog extends React.Component {
       open: this.props.open,
       editMode: false,
       book: {
+        id: this.props.book.id,
         title: this.props.book.title,
         author: this.props.book.author,
         released: this.props.book.released,
@@ -34,6 +35,7 @@ class AddBookDialog extends React.Component {
   _handleClickOpen() {
     if (this.state.editMode === false) {
       this.setState({book: {
+        id: '',
         title: '',
         author: '',
         released: 2021,
@@ -46,17 +48,18 @@ class AddBookDialog extends React.Component {
   _handleAddOrEdit() {
     if (this.state.editMode === true) {
       editBook(this.state.book).then(res => {
+        console.log('editBook done');
         // close the dialog
         this.handleClose();
 
+        console.log('handleClose done');
+
         // instruct the parent to refresh the books
         this.props.refreshBookCollection();
-        
-        // edit was successful, switch back to "add mode"
-        this.handleClose();
+        console.log('refreshBookCollection called');
       }).catch(err => {
         console.error(err);
-        alert('Failed to add the book: ' + err);
+        alert('Failed to edit the book: ' + err);
       });
     } else {
       addBook(this.state.book).then(res => {
@@ -73,9 +76,9 @@ class AddBookDialog extends React.Component {
   }
 
   _handleInputChange(event) {
-    const id = event.target.id;
+    const key = event.target.id;
     const value = event.target.value;
-    const newBookValues = {...this.state.book, [id]: value};
+    const newBookValues = {...this.state.book, [key]: value};
     this.setState({book: newBookValues});
   }
   

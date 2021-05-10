@@ -31,7 +31,6 @@ export const addBook = async book => {
 export const editBook = async book => {
     // TODO: clean the inputs
     try {
-        return {success: true}; // temp code
         const url = '/api/editBook';
         const json = JSON.stringify(book);
 
