@@ -14,10 +14,29 @@ class Book extends React.Component {
                 image: this.props.image
             }
         };
+        
+        this.callRefresh = this.refresh.bind(this);
     }
 
-    refresh() {
-        this.setState({});
+    refresh(newBook) {
+        this.setState({book: newBook});
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.title !== prevProps.title ||
+            this.props.author !== prevProps.author ||
+            this.props.image !== prevProps.image ||
+            this.props.released !== prevProps.released)
+        {
+            const newBook = {
+                id: this.props.id,
+                title: this.props.title,
+                author: this.props.author,
+                image: this.props.image,
+                released: this.props.released
+            };
+            this.callRefresh(newBook);
+        }
     }
 
     render() {

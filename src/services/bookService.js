@@ -34,7 +34,7 @@ export const editBook = async book => {
         const url = '/api/editBook';
         const json = JSON.stringify(book);
 
-        const response = await axios.patch(url, json, { headers: {'Content-Type': 'application/json'} })
+        const response = await axios.put(url, json, { headers: {'Content-Type': 'application/json'} })
         if (response.status !== 200) return { success: false};
         return { success: true};
     }

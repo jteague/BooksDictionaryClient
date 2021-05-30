@@ -47,16 +47,13 @@ class AddBookDialog extends React.Component {
 
   _handleAddOrEdit() {
     if (this.state.editMode === true) {
+
       editBook(this.state.book).then(res => {
-        console.log('editBook done');
         // close the dialog
         this.handleClose();
 
-        console.log('handleClose done');
-
         // instruct the parent to refresh the books
         this.props.refreshBookCollection();
-        console.log('refreshBookCollection called');
       }).catch(err => {
         console.error(err);
         alert('Failed to edit the book: ' + err);
