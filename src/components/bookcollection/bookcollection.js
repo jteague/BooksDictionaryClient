@@ -14,7 +14,7 @@ class BookCollection extends React.Component {
                 title: '',
                 author: '',
                 released: 2020,
-                image: 'http://',
+                image: '',
               },
             dialogOpen: false
         };

@@ -13,7 +13,6 @@ export async function fetchBook(bookName) {
 }
 
 export const addBook = async book => {
-    // TODO: clean the inputs
     try {
         const url = '/api/addBook';
         const json = JSON.stringify(book);
@@ -24,12 +23,11 @@ export const addBook = async book => {
     } 
     catch (errors) {
         console.error(errors);
-        return { success: false};
+        return errors.response.data;
     }
 };
 
 export const editBook = async book => {
-    // TODO: clean the inputs
     try {
         const url = '/api/editBook';
         const json = JSON.stringify(book);
@@ -46,8 +44,6 @@ export const editBook = async book => {
 
 export const deleteBook = async book => {
     
-    // TODO: clean the inputs
-
     try {
         const url = '/api/deleteBook';
         const json = JSON.stringify(book);

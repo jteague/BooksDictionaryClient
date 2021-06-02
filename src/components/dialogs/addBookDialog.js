@@ -39,7 +39,7 @@ class AddBookDialog extends React.Component {
         title: '',
         author: '',
         released: 2021,
-        image: 'http://',
+        image: '',
       }})
     }
     this.setState({ open: true });
@@ -49,6 +49,11 @@ class AddBookDialog extends React.Component {
     if (this.state.editMode === true) {
 
       editBook(this.state.book).then(res => {
+        if (res.success === false) {
+          alert('Failed to edit the book');
+          return;
+        }
+
         // close the dialog
         this.handleClose();
 
@@ -60,6 +65,10 @@ class AddBookDialog extends React.Component {
       });
     } else {
       addBook(this.state.book).then(res => {
+        if (res.success === false) {
+          alert('Failed to add the book');
+          return;
+        }
         // close the dialog
         this.handleClose();
 
